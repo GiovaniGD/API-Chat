@@ -1,7 +1,16 @@
 const jwt = require('jsonwebtoken');
 
 const checktoken = async (token, id, key) => jwt.verify(token, key, (err, decoded) => {
-    //. . . .
+    try{
+        const dec = jwt.verufy(token, key, (err, decoded)=>{
+            if(err){
+                return false;
+            }
+            if(decoded){
+                if(decoded.id==id) return true;
+            }
+        })
+    }
 });
 
 const setToken = async (id, key) => {
